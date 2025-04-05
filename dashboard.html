@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet</title>
+  <link rel="stylesheet" href="css/coinbase-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+  <div class="app-container">
+   
+    <!-- Wallet Header -->
+    <div class="wallet-header">
+      <div class="wallet-address">
+        <div class="wallet-avatar">
+          <i class="fas fa-skull"></i>
+        </div>
+        <div class="wallet-id">0xFA...8EdD</div>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="header-actions">
+        <button class="header-action">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="header-action">
+          <i class="fas fa-qrcode"></i>
+        </button>
+        <button class="header-action">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">2</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Balance -->
+    <div class="balance-container">
+      <h1 class="balance-amount" id="balanceAmount">$469,814,456,791.69</h1>
+    </div>
+
+    <!-- Action Buttons -->
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active">—</button>
+        <button class="tab-btn">—</button>
+        <button class="tab-btn">—</button>
+        <button class="tab-btn">—</button>
+        <button class="tab-btn">—</button>
+      </div>
+    </div>
+
+    <!-- Network Filter -->
+    <!-- BTC Promo Banner -->
+    <div class="promo-banner">
+      <div class="promo-icon">
+        <i class="fab fa-bitcoin"></i>
+      </div>
+      <div class="promo-content">
+        <div class="promo-title">Do more with BTC onchain</div>
+        <div class="promo-description">cbBTC - an ERC20 token backed 1:1 by Bitcoin on Coinbase is now live on Base and Ethereum.</div>
+      </div>
+    </div>
+
+    <!-- Watchlist Section -->
+    <div class="watchlist-section">
+      <h2 class="section-header">Watchlist</h2>
+      <div class="watchlist-card">
+        <div class="watchlist-info">
+          <div class="watchlist-title">Create a watchlist</div>
+          <div class="watchlist-description">Get price alerts and stay up to date</div>
+        </div>
+        <div class="watchlist-icon">
+          <div class="watchlist-icon-item">C</div>
+          <div class="watchlist-icon-item">B</div>
+          <div class="watchlist-icon-item">O</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trending Section -->
+    <div class="trending-section">
+      <div class="trending-header">
+        <div class="trending-title">
+          Trending swaps on Base
+          <div class="info-icon">i</div>
+        </div>
+      </div>
+      <div class="trending-cards">
+        <div class="trending-card">
+          <div class="trending-token">
+            <div class="trending-token-icon">
+              <img src="img/doginme.png" alt="DOGINME" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+            </div>
+            <div class="trending-token-info">
+              <div class="trending-token-name">DOGINME</div>
+              <div class="trending-token-price">$0.000624</div>
+            </div>
+            <div class="trending-token-change">
+              <i class="fas fa-arrow-up"></i>
+              5.82%
+            </div>
+          </div>
+          <div class="trending-stats">
+            <div class="trending-swaps">603 swaps</div>
+            <button class="swap-btn">Swap</button>
+          </div>
+          <div class="trending-progress"></div>
+          <div class="trending-percentages">
+            <div class="trending-bought">
+              <i class="fas fa-circle"></i>
+              66% bought
+            </div>
+            <div class="trending-sold">
+              <i class="fas fa-circle"></i>
+              34% sold
+            </div>
+          </div>
+        </div>
+        <div class="trending-card">
+          <div class="trending-token">
+            <div class="trending-token-icon">
+              <img src="img/br.png" alt="BR" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%2300BFFF\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+            </div>
+            <div class="trending-token-info">
+              <div class="trending-token-name">BR</div>
+              <div class="trending-token-price">$0.000842</div>
+            </div>
+            <div class="trending-token-change">
+              <i class="fas fa-arrow-up"></i>
+              3.12%
+            </div>
+          </div>
+          <div class="trending-stats">
+            <div class="trending-swaps">378 swaps</div>
+            <button class="swap-btn">Swap</button>
+          </div>
+          <div class="trending-progress"></div>
+          <div class="trending-percentages">
+            <div class="trending-bought">
+              <i class="fas fa-circle"></i>
+              58% bought
+            </div>
+            <div class="trending-sold">
+              <i class="fas fa-circle"></i>
+              42% sold
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item active">
+        <i class="fas fa-home"></i>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+      </a>
+      <a href="send.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+      </a>
+    </nav>
+
+    <!-- Home Indicator -->
+    <div class="home-indicator"></div>
+  </div>
+
+  <script src="js/coinbase-dashboard.js"></script>
+</body>
+</html>
+

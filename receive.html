@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Receive</title>
+  <link rel="stylesheet" href="css/binance-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      background-color: var(--card-color);
+      border-radius: var(--border-radius);
+      margin: 16px;
+    }
+    
+    .qr-code {
+      width: 200px;
+      height: 200px;
+      background-color: white;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .address-container {
+      width: 100%;
+      background-color: var(--background-color);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      word-break: break-all;
+      text-align: center;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    
+    .action-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background-color: var(--card-color);
+      border-radius: 8px;
+      color: var(--text-color);
+    }
+    
+    .token-selector {
+      padding: 16px;
+    }
+    
+    .token-select {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--card-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23848e9c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="dashboard.html" class="menu-btn">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h2>Receive</h2>
+      <div style="width: 40px;"></div>
+    </header>
+
+    <!-- Token Selector -->
+    <div class="token-selector">
+      <select id="tokenSelect" class="token-select">
+        <option value="MAIN">Main Wallet</option>
+        <option value="TRX">TRX</option>
+        <option value="USDT">USDT</option>
+        <option value="USDC">USDC</option>
+        <option value="BNB">BNB</option>
+        <option value="SOL">SOL</option>
+        <option value="ETH">ETH</option>
+        <option value="BTC">BTC</option>
+        <option value="POL">POL</option>
+      </select>
+    </div>
+
+    <!-- QR Code Container -->
+    <div class="qr-container">
+      <div id="qrCode" class="qr-code">
+        <!-- QR code will be generated here -->
+      </div>
+      
+      <div class="address-container" id="displayAddress">
+        Select a token to view address
+      </div>
+      
+      <p style="color: var(--text-secondary); text-align: center; margin-bottom: 16px;">
+        Only send <span id="selectedTokenName">the selected token</span> to this address. Sending any other coins may result in permanent loss.
+      </p>
+      
+      <div class="action-buttons">
+        <button id="copyAddressBtn" class="action-button">
+          <i class="far fa-copy"></i>
+          <span>Copy</span>
+        </button>
+        <button id="shareAddressBtn" class="action-button">
+          <i class="fas fa-share-alt"></i>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="send.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Discover</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Assets</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="js/receive.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Register</title>
+  <link rel="stylesheet" href="css/coinbase-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background-color: white;
+      color: #000;
+    }
+    
+    .app-container {
+      background-color: white;
+    }
+    
+    .status-bar {
+      display: flex;
+      justify-content: center;
+      padding: 10px 20px;
+      background-color: white;
+    }
+    
+    .register-container {
+      padding: 40px 20px;
+    }
+    
+    .register-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .register-logo {
+      font-size: 64px;
+      color: #0052ff;
+      margin-bottom: 24px;
+    }
+    
+    .register-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .register-subtitle {
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .register-form {
+      background-color: white;
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #666;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 16px;
+      background-color: #f5f8ff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus {
+      border-color: #0052ff;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 82, 255, 0.1);
+    }
+    
+    .register-btn {
+      width: 100%;
+      padding: 16px;
+      background-color: #0052ff;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .register-btn:hover {
+      background-color: #0045d8;
+    }
+    
+    .auth-links {
+      text-align: center;
+      margin-top: 24px;
+    }
+    
+    .auth-links a {
+      color: #0052ff;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    .auth-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 10px;
+    }
+    
+    .theme-toggle span {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="status-bar">
+      <div class="logo-text">
+        <img src="img/logocoinbase.png" alt="Coinbase" height="100">
+      </div>
+    </div>
+    
+    <div class="register-container">
+      <div class="register-header">
+        <div class="register-logo">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <h1 class="register-title">Create your account</h1>
+        <p class="register-subtitle">Join the future of finance</p>
+      </div>
+      
+      <form id="registerForm" class="register-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-input" placeholder="Create a password" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+        </div>
+        
+        <div class="form-error" id="registerError"></div>
+        
+        <button type="submit" class="register-btn">Create Account</button>
+        
+        <div class="auth-links">
+          <p>Already have an account? <a href="index.html">Sign in</a></p>
+        </div>
+      </form>
+      
+      <div class="theme-toggle">
+        <span>Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
+

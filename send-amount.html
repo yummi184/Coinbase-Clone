@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Amount</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="time">13:49</div>
+            <div class="recording-indicator">
+                <div class="recording-dot"></div>
+            </div>
+            <div class="status-icons">
+                <div class="network">LTE</div>
+                <div class="signal-icon">
+                    <div class="signal-bar"></div>
+                    <div class="signal-bar"></div>
+                    <div class="signal-bar"></div>
+                </div>
+                <div class="battery">
+                    <span>71%</span>
+                    <div class="battery-icon">
+                        <div class="battery-level"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="send-header">
+            <button class="back-button"><i class="fas fa-arrow-left"></i></button>
+            <h2>Enter Amount</h2>
+            <button class="next-button">Next</button>
+        </div>
+
+        <div class="recipient-summary">
+            <div class="recipient-label">To: Account 1 (bc1q...sw4q)</div>
+            <button class="edit-button"><i class="fas fa-pen"></i></button>
+        </div>
+
+        <div class="amount-input">
+            <div class="amount-value">
+                <span id="amount-number" class="error">2000</span>
+                <span class="currency">BTC</span>
+            </div>
+            <button class="toggle-unit"><i class="fas fa-exchange-alt"></i></button>
+        </div>
+
+        <div class="amount-usd">~$1,659,881.92</div>
+        <div class="error-message">⊘ Insufficient balance</div>
+
+        <div class="video-overlay">
+            <div class="play-button">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
+
+        <div class="available-balance">
+            <div class="available-label">Available To Send <i class="far fa-question-circle"></i></div>
+            <div class="available-amount">< ~0.00001 BTC</div>
+            <button class="max-button">Max</button>
+        </div>
+
+        <div class="numeric-keypad">
+            <div class="keypad-row">
+                <button class="keypad-key">1</button>
+                <button class="keypad-key">2<div class="key-letters">ABC</div></button>
+                <button class="keypad-key">3<div class="key-letters">DEF</div></button>
+            </div>
+            <div class="keypad-row">
+                <button class="keypad-key">4<div class="key-letters">GHI</div></button>
+                <button class="keypad-key">5<div class="key-letters">JKL</div></button>
+                <button class="keypad-key">6<div class="key-letters">MNO</div></button>
+            </div>
+            <div class="keypad-row">
+                <button class="keypad-key">7<div class="key-letters">PQRS</div></button>
+                <button class="keypad-key">8<div class="key-letters">TUV</div></button>
+                <button class="keypad-key">9<div class="key-letters">WXYZ</div></button>
+            </div>
+            <div class="keypad-row">
+                <button class="keypad-key">.</button>
+                <button class="keypad-key">0</button>
+                <button class="keypad-key delete-key"><i class="fas fa-backspace"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/send-amount.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Detail</title>
+  <link rel="stylesheet" href="css/coinbase-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .token-detail-container {
+      padding: 16px;
+    }
+    
+    .token-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .back-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--card-color);
+      border-radius: 50%;
+    }
+    
+    .options-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .token-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .token-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .token-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .token-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .token-price {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .price-change {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--positive-color);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    
+    .price-change.negative {
+      color: var(--negative-color);
+    }
+    
+    .chart-container {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .chart-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .time-filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    
+    .time-filter {
+      padding: 8px 16px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    
+    .time-filter.active {
+      background-color: var(--card-color);
+      color: var(--text-color);
+    }
+    
+    .network-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background-color: #f0f8ff;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      color: #000;
+    }
+    
+    .network-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .balance-section {
+      margin-bottom: 24px;
+    }
+    
+    .balance-label {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    
+    .balance-amount {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .token-amount {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+    
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .action-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--card-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .action-label {
+      font-size: 14px;
+    }
+    
+    .action-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    .section-divider {
+      height: 8px;
+      background-color: #f5f5f5;
+      margin: 0 -16px 24px;
+    }
+    
+    .section-header {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .trading-activity {
+      margin-bottom: 24px;
+    }
+    
+    .swaps-info {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: #4a4a4a;
+      border-radius: 4px;
+    }
+    
+    .progress-fill.sell {
+      background-color: #e93980;
+    }
+    
+    .trading-stats {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .trading-stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .trading-stat.buy {
+      color: var(--positive-color);
+    }
+    
+    .trading-stat.sell {
+      color: var(--negative-color);
+    }
+    
+    .about-section {
+      margin-bottom: 24px;
+    }
+    
+    .about-content {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .history-section {
+      margin-bottom: 80px;
+    }
+    
+    .transaction-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .transaction-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .transaction-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .transaction-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--primary-color);
+      border: 2px solid var(--background-color);
+    }
+    
+    .transaction-info {
+      flex: 1;
+    }
+    
+    .transaction-type {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    
+    .transaction-address {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    .transaction-amount {
+      text-align: right;
+    }
+    
+    .transaction-value {
+      font-weight: 600;
+      color: var(--positive-color);
+    }
+    
+    .transaction-token {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+  <div class="app-container">
+    
+    
+    <div class="token-detail-container">
+      <!-- Token Header -->
+      <div class="token-header">
+        <a href="defi-wallet.html" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="options-button">
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+      </div>
+      
+      <!-- Token Info -->
+      <div class="token-info">
+        <div class="token-icon" id="tokenIcon">
+          <img src="img/bnb.png" alt="BNB" id="tokenImg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+        </div>
+        <div class="token-name" id="tokenName">BNB price</div>
+        <div class="watch-button" style="margin-left: auto; background-color: #f5f5f5; color: #000; padding: 8px 16px; border-radius: 20px; font-weight: 500;">
+          Watch
+        </div>
+      </div>
+      
+      <!-- Price Info -->
+      <div class="token-price" id="tokenPrice">$597.12</div>
+      <div class="price-change" id="priceChange">
+        <i class="fas fa-arrow-up"></i>
+        <span id="priceChangeAmount">$8.91 (1.51%)</span>
+      </div>
+      
+      <!-- Chart -->
+      <div class="chart-container">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 800 200'><path d='M0,100 Q50,80 100,120 T200,100 T300,50 T400,150 T500,20 T600,80 T700,60 T800,100' stroke='%23F3BA2F' stroke-width='2' fill='none'/></svg>" alt="Price Chart" class="chart-image">
+      </div>
+      
+      <!-- Time Filters -->
+      <div class="time-filters">
+        <button class="time-filter">1H</button>
+        <button class="time-filter active">1D</button>
+        <button class="time-filter">1W</button>
+        <button class="time-filter">1M</button>
+        <button class="time-filter">1Y</button>
+        <button class="time-filter">All</button>
+      </div>
+      
+      <!-- Network Banner -->
+      <div class="network-banner">
+        <div class="network-icon">
+          <img src="img/bnb.png" alt="BNB" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+        </div>
+        <div>This asset is on BNB (Binance Smart) Chain</div>
+      </div>
+      
+      <!-- Balance Section -->
+      <div class="balance-section">
+        <div class="balance-label">Your balance</div>
+        <div class="balance-amount" id="balanceUsd">$0.46</div>
+        <div class="token-amount" id="balanceToken">0.000773 BNB</div>
+      </div>
+      
+      <!-- Action Grid 1 -->
+      <div class="action-grid">
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="action-label">Buy</div>
+        </div>
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="action-label">Swap</div>
+        </div>
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <div class="action-label">Fund from Main</div>
+        </div>
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <div class="action-label">Cash out</div>
+        </div>
+      </div>
+      
+      <!-- Action Grid 2 -->
+      <div class="action-grid-2">
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-arrow-up"></i>
+          </div>
+          <div class="action-label">Send</div>
+        </div>
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-arrow-down"></i>
+          </div>
+          <div class="action-label">Receive</div>
+        </div>
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-list"></i>
+          </div>
+          <div class="action-label">Transactions</div>
+        </div>
+        <div class="action-item">
+          <div class="action-icon">
+            <i class="fas fa-share-alt"></i>
+          </div>
+          <div class="action-label">Share</div>
+        </div>
+      </div>
+      
+      <!-- Section Divider -->
+      <div class="section-divider"></div>
+      
+      <!-- Trading Activity -->
+      <div class="trading-activity">
+        <h2 class="section-header">Trading activity</h2>
+        <div class="swaps-info">383 swaps in the last 24 hours</div>
+        
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 20%;"></div>
+        </div>
+        <div class="trading-stats">
+          <div class="trading-stat buy">20% bought</div>
+        </div>
+        
+        <div class="progress-bar">
+          <div class="progress-fill sell" style="width: 80%;"></div>
+        </div>
+        <div class="trading-stats">
+          <div class="trading-stat sell">80% sold</div>
+        </div>
+      </div>
+      
+      <!-- About Section -->
+      <div class="about-section">
+        <h2 class="section-header" id="aboutTitle">About BNB</h2>
+        <div class="about-content" id="aboutContent">
+          Binance Coin is a cryptocurrency used to pay fees on the Binance cryptocurrency exchange. Fees paid in Binance Coin on the exchange receive a discount.
+        </div>
+      </div>
+      <br>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+      </a>
+      <a href="send.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+      </a>
+      <a href="defi-wallet.html" class="nav-item active">
+        <i class="fas fa-wallet"></i>
+      </a>
+    </nav>
+
+    <!-- Home Indicator -->
+    <div class="home-indicator"></div>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+    const token = localStorage.getItem("token")
+
+    if (!currentUser || !token) {
+      // Redirect to login if not logged in
+      window.location.href = "index.html"
+      return
+    }
+
+    // Get token type from URL parameters
+    const urlParams = new URLSearchParams(window.location.search)
+    const tokenType = urlParams.get("token") || "BNB"
+
+    // Token data mapping
+    const tokenData = {
+      "BNB": {
+        name: "BNB price",
+        price: 597.12,
+        change: 8.91,
+        changePercent: 1.51,
+        about: "Binance Coin is a cryptocurrency used to pay fees on the Binance cryptocurrency exchange. Fees paid in Binance Coin on the exchange receive a discount.",
+        balanceField: "bnbBalance",
+        color: "#F3BA2F",
+        network: "BNB (Binance Smart) Chain"
+      },
+      "TRX": {
+        name: "TRX price",
+        price: 0.2517,
+        change: 0.0015,
+        changePercent: 0.06,
+        about: "TRON is a blockchain-based decentralized platform that aims to build a free, global digital content entertainment system with distributed storage technology.",
+        balanceField: "trxBalance",
+        color: "#FF0000",
+        network: "TRON Network"
+      },
+      "USDT": {
+        name: "USDT price",
+        price: 1.00,
+        change: 0.00,
+        changePercent: 0.00,
+        about: "Tether (USDT) is a stablecoin pegged to the US dollar, providing individuals with a stable alternative to the high volatility of other cryptocurrencies.",
+        balanceField: "usdtBalance",
+        color: "#26A17B",
+        network: "Multiple Networks"
+      },
+      "USDC": {
+        name: "USDC price",
+        price: 1.01,
+        change: 0.0001,
+        changePercent: 0.01,
+        about: "USD Coin (USDC) is a stablecoin that is pegged to the US dollar and runs on multiple blockchains.",
+        balanceField: "usdcBalance",
+        color: "#2775CA",
+        network: "Multiple Networks"
+      },
+      "SOL": {
+        name: "SOL price",
+        price: 126.54,
+        change: 1.76,
+        changePercent: 1.41,
+        about: "Solana is a high-performance blockchain supporting builders around the world creating crypto apps that scale.",
+        balanceField: "solBalance",
+        color: "#9945FF",
+        network: "Solana Network"
+      },
+      "ETH": {
+        name: "ETH price",
+        price: 3452.78,
+        change: 144.12,
+        changePercent: 4.35,
+        about: "Ethereum is a decentralized, open-source blockchain with smart contract functionality. Ether is the native cryptocurrency of the platform.",
+        balanceField: "ethBalance",
+        color: "#627EEA",
+        network: "Ethereum Network"
+      },
+      "BTC": {
+        name: "BTC price",
+        price: 65432.21,
+        change: 2032.40,
+        changePercent: 3.2,
+        about: "Bitcoin is a decentralized digital currency, without a central bank or single administrator, that can be sent from user to user on the peer-to-peer bitcoin network.",
+        balanceField: "btcBalance",
+        color: "#F7931A",
+        network: "Bitcoin Network"
+      },
+      "POL": {
+        name: "POL price",
+        price: 0.78,
+        change: -0.0075,
+        changePercent: -0.96,
+        about: "Polygon (formerly Matic Network) is a protocol and a framework for building and connecting Ethereum-compatible blockchain networks.",
+        balanceField: "polBalance",
+        color: "#8247E5",
+        network: "Polygon Network"
+      }
+    }
+
+    // Get token data
+    const data = tokenData[tokenType] || tokenData["BNB"]
+
+    // Update UI with token data
+    document.getElementById("tokenName").textContent = data.name
+    document.getElementById("tokenPrice").textContent = `$${data.price.toLocaleString()}`
+    
+    // Update price change
+    const priceChangeElement = document.getElementById("priceChange")
+    const priceChangeAmountElement = document.getElementById("priceChangeAmount")
+    
+    if (data.changePercent < 0) {
+      priceChangeElement.classList.add("negative")
+      priceChangeElement.querySelector("i").className = "fas fa-arrow-down"
+    } else {
+      priceChangeElement.classList.remove("negative")
+      priceChangeElement.querySelector("i").className = "fas fa-arrow-up"
+    }
+    
+    priceChangeAmountElement.textContent = `$${Math.abs(data.change).toLocaleString()} (${Math.abs(data.changePercent)}%)`
+
+    // Update token icon
+    document.getElementById("tokenImg").src = `img/${tokenType.toLowerCase()}.png`
+    document.getElementById("tokenImg").alt = tokenType
+
+    // Update balance with real data
+    const balanceField = data.balanceField
+    const balance = currentUser[balanceField] || 0
+    const balanceUsd = balance * data.price
+
+    document.getElementById("balanceUsd").textContent = `$${balanceUsd.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    })}`
+    document.getElementById("balanceToken").textContent = `${balance} ${tokenType}`
+
+    // Update about section
+    document.getElementById("aboutTitle").textContent = `About ${tokenType}`
+    document.getElementById("aboutContent").textContent = data.about
+
+    // Update network banner
+    const networkBanner = document.querySelector(".network-banner")
+    networkBanner.querySelector("div:last-child").textContent = `This asset is on ${data.network}`
+    
+    // Add event listeners for action buttons
+    document.querySelectorAll(".action-item").forEach(item => {
+      item.addEventListener("click", function() {
+        const action = this.querySelector(".action-label").textContent.toLowerCase()
+        
+        switch(action) {
+          case "send":
+            window.location.href = `send.html?token=${tokenType}`
+            break
+          case "receive":
+            window.location.href = `receive.html?token=${tokenType}`
+            break
+          case "transactions":
+            window.location.href = `transactions.html?token=${tokenType}`
+            break
+          case "fund from main":
+            showFundFromMainModal(tokenType)
+            break
+          case "buy":
+          case "swap":
+          case "cash out":
+          case "share":
+            alert(`${action.charAt(0).toUpperCase() + action.slice(1)} functionality coming soon!`)
+            break
+        }
+      })
+    })
+
+    // Function to show fund from main modal
+    function showFundFromMainModal(tokenType) {
+      // Create modal for funding from main wallet
+      const modal = document.createElement("div")
+      modal.className = "modal active"
+      modal.id = "fundTokenModal"
+
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Fund ${tokenType} from Main</h3>
+            <button class="modal-close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="fundTokenForm">
+              <input type="hidden" id="tokenType" value="${tokenType}">
+              <div class="form-group">
+                <label for="fundAmount" class="form-label">Amount</label>
+                <input type="number" id="fundAmount" class="form-input" min="0.01" step="0.01" placeholder="0.00" required>
+              </div>
+              
+              <div id="fundTokenError" class="form-error"></div>
+              
+              <button type="submit" class="auth-btn">
+                <i class="fas fa-wallet"></i> Fund ${tokenType} Wallet
+              </button>
+            </form>
+          </div>
+        </div>
+      `
+
+      document.body.appendChild(modal)
+
+      // Add event listener to close modal
+      const closeBtn = modal.querySelector(".modal-close")
+      closeBtn.addEventListener("click", () => {
+        document.body.removeChild(modal)
+      })
+
+      // Add event listener for fund token form
+      const fundTokenForm = document.getElementById("fundTokenForm")
+      if (fundTokenForm) {
+        fundTokenForm.addEventListener("submit", (e) => {
+          e.preventDefault()
+          const tokenType = document.getElementById("tokenType").value
+          const amount = document.getElementById("fundAmount").value
+          const errorElement = document.getElementById("fundTokenError")
+
+          // Clear previous errors
+          errorElement.textContent = ""
+
+          // Validate amount
+          if (Number.parseFloat(amount) <= 0) {
+            errorElement.textContent = "Amount must be greater than 0"
+            return
+          }
+
+          // Make API request to fund token wallet
+          fetch("/api/transactions/fund-token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              tokenType,
+              amount: Number.parseFloat(amount),
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Close modal
+                document.body.removeChild(modal)
+
+                // Update the UI immediately
+                const updatedUser = JSON.parse(localStorage.getItem("currentUser"))
+                updatedUser.balance -= Number.parseFloat(amount)
+                updatedUser[`${tokenType.toLowerCase()}Balance`] = 
+                  (updatedUser[`${tokenType.toLowerCase()}Balance`] || 0) + Number.parseFloat(amount)
+                localStorage.setItem("currentUser", JSON.stringify(updatedUser))
+
+                // Reload the page to show updated balances
+                window.location.reload()
+              } else {
+                errorElement.textContent = data.message || "Failed to fund wallet"
+              }
+            })
+            .catch((error) => {
+              errorElement.textContent = "An error occurred. Please try again."
+              console.error("Fund token error:", error)
+            })
+        })
+      }
+
+      // Close modal when clicking outside
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          document.body.removeChild(modal)
+        }
+      })
+    }
+  })
+</script>
+</body>
+</html>
+

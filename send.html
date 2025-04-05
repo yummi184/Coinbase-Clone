@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Send</title>
+  <link rel="stylesheet" href="css/binance-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+   .form-container {
+  padding: 16px;
+  background-color: white;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2196F3; 
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.send-tabs {
+  display: flex;
+  margin-bottom: 16px;
+  background-color: var(--card-color);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.send-tab.active {
+  background-color: #2196F3; /* Changed to blue */
+  color: #000;
+}
+
+/* ... (rest of existing styles remain the same) */
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--card-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+    }
+    
+    .form-select {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--card-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23848e9c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+    }
+    
+    .form-error {
+      color: var(--negative-color);
+      margin-top: 4px;
+      min-height: 20px;
+    }
+    
+
+    .send-tabs {
+      display: flex;
+      margin-bottom: 16px;
+      background-color: var(--card-color);
+      border-radius: 8px;
+      padding: 4px;
+    }
+    
+    .send-tab {
+      flex: 1;
+      padding: 8px 0;
+      text-align: center;
+      border-radius: 6px;
+    }
+    
+    .send-tab.active {
+      background-color: #2196F3; 
+      color: #000;
+    }
+    
+    .send-form {
+      display: none;
+    }
+    
+    .send-form.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="dashboard.html" class="menu-btn">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h2>Send</h2>
+      <div style="width: 40px;"></div>
+    </header>
+
+    <div class="form-container">
+      <!-- Send Tabs -->
+      <div class="send-tabs">
+        <button class="send-tab active" data-form="tokenForm">Token</button>
+        <button class="send-tab" data-form="mainWalletForm">Main Wallet</button>
+        <button class="send-tab" data-form="fundTokenForm">Fund from Main</button>
+      </div>
+
+      <!-- Token Form -->
+      <form id="tokenForm" class="send-form active">
+        <div class="form-group">
+          <label for="tokenType" class="form-label">Token</label>
+          <select id="tokenType" class="form-select" required>
+            <option value="TRX">TRX</option>
+            <option value="USDT">USDT</option>
+            <option value="USDC">USDC</option>
+            <option value="BNB">BNB</option>
+            <option value="SOL">SOL</option>
+            <option value="ETH">ETH</option>
+            <option value="BTC">BTC</option>
+            <option value="POL">POL</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="recipientAddress" class="form-label">Recipient Address</label>
+          <input type="text" id="recipientAddress" class="form-input" placeholder="Enter recipient address" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="tokenAmount" class="form-label">Amount</label>
+          <input type="number" id="tokenAmount" class="form-input" min="0.00001" step="0.00001" placeholder="0.00" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="tokenNote" class="form-label">Note (Optional)</label>
+          <input type="text" id="tokenNote" class="form-input" placeholder="Add a note">
+        </div>
+        
+        <div class="form-error" id="sendTokenError"></div>
+        
+        <button type="submit" class="submit-btn">Send Token</button>
+      </form>
+
+      <!-- Main Wallet Form -->
+      <form id="mainWalletForm" class="send-form">
+        <div class="form-group">
+          <label for="mainRecipientAddress" class="form-label">Recipient Main Wallet Address</label>
+          <input type="text" id="mainRecipientAddress" class="form-input" placeholder="Enter main wallet address" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="mainAmount" class="form-label">Amount</label>
+          <input type="number" id="mainAmount" class="form-input" min="0.00001" step="0.00001" placeholder="0.00" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="mainNote" class="form-label">Note (Optional)</label>
+          <input type="text" id="mainNote" class="form-input" placeholder="Add a note">
+        </div>
+        
+        <div class="form-error" id="mainSendError"></div>
+        
+        <button type="submit" class="submit-btn">Send from Main Wallet</button>
+      </form>
+
+      <!-- Fund Token from Main Form -->
+      <form id="fundTokenForm" class="send-form">
+        <div class="form-group">
+          <label for="fundTokenType" class="form-label">Token to Fund</label>
+          <select id="fundTokenType" class="form-select" required>
+            <option value="TRX">TRX</option>
+            <option value="USDT">USDT</option>
+            <option value="USDC">USDC</option>
+            <option value="BNB">BNB</option>
+            <option value="SOL">SOL</option>
+            <option value="ETH">ETH</option>
+            <option value="BTC">BTC</option>
+            <option value="POL">POL</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="fundAmount" class="form-label">Amount</label>
+          <input type="number" id="fundAmount" class="form-input" min="0.00001" step="0.00001" placeholder="0.00" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="fundNote" class="form-label">Note (Optional)</label>
+          <input type="text" id="fundNote" class="form-input" placeholder="Add a note">
+        </div>
+        
+        <div class="form-error" id="fundTokenError"></div>
+        
+        <button type="submit" class="submit-btn">Fund Token from Main Wallet</button>
+      </form>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="send.html" class="nav-item active">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="js/send.js"></script>
+</body>
+</html>
+

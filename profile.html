@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Profile</title>
+  <link rel="stylesheet" href="css/coinbase-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background-color: white;
+      color: #000;
+    }
+    
+    .app-container {
+      background-color: white;
+    }
+    
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: white;
+    }
+    
+    .time {
+      font-weight: 500;
+    }
+    
+    .network {
+      font-weight: 500;
+    }
+    
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background-color: white;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .back-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+    }
+    
+    .profile-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    
+    .profile-container {
+      padding: 20px;
+    }
+    
+    .profile-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    
+    .avatar-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #0052ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    
+    .edit-avatar {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-name {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .profile-email {
+      color: #666;
+    }
+    
+    .profile-section {
+      margin-bottom: 32px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .profile-card {
+      background-color: #f5f5f5;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .profile-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .profile-item:last-child {
+      border-bottom: none;
+    }
+    
+    .profile-item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0052ff;
+      margin-right: 16px;
+    }
+    
+    .profile-item-text {
+      flex: 1;
+      font-weight: 500;
+    }
+    
+    .profile-item-value {
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+      background-color: #0052ff;
+    }
+    
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+    
+    .logout-btn {
+      width: 100%;
+      padding: 16px;
+      background-color: #f5f5f5;
+      color: #f6465d;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      width: 90%;
+      max-width: 400px;
+      background-color: white;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .modal-close {
+      color: #666;
+      font-size: 20px;
+    }
+    
+    .modal-body {
+      padding: 16px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #666;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 16px;
+      background-color: #f5f5f5;
+      border: none;
+      border-radius: 12px;
+      color: #000;
+      font-size: 16px;
+    }
+    
+    .form-error {
+      color: #f6465d;
+      font-size: 14px;
+      margin-top: 8px;
+      min-height: 20px;
+    }
+    
+    .form-button {
+      width: 100%;
+      padding: 16px;
+      background-color: #0052ff;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h2 class="profile-title">Profile</h2>
+      <div style="width: 40px;"></div>
+    </div>
+
+    <div class="profile-container">
+      <!-- User Avatar -->
+      <div class="profile-avatar">
+        <div class="avatar-circle" id="profileAvatar">
+          <span id="profileInitial">J</span>
+          <div class="edit-avatar">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+        <h2 class="profile-name" id="profileName">John Doe</h2>
+        <p class="profile-email" id="profileEmail">john@example.com</p>
+      </div>
+
+      <!-- Account Section -->
+      <div class="profile-section">
+        <h3 class="section-title">Account</h3>
+        <div class="profile-card">
+          <div class="profile-item" id="editProfileBtn">
+            <div class="profile-item-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-item-text">Edit Profile</div>
+            <div class="profile-item-value">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="profile-item" id="changePasswordBtn">
+            <div class="profile-item-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="profile-item-text">Change Password</div>
+            <div class="profile-item-value">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security Section -->
+      <div class="profile-section">
+        <h3 class="section-title">Security</h3>
+        <div class="profile-card">
+          <div class="profile-item" id="twoFactorBtn">
+            <div class="profile-item-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="profile-item-text">Two-Factor Authentication</div>
+            <div class="profile-item-value">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="profile-item" id="biometricBtn">
+            <div class="profile-item-icon">
+              <i class="fas fa-fingerprint"></i>
+            </div>
+            <div class="profile-item-text">Biometric Login</div>
+            <div class="profile-item-value">
+              <label class="toggle-switch">
+                <input type="checkbox" id="biometricToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferences Section -->
+      <div class="profile-section">
+        <h3 class="section-title">Preferences</h3>
+        <div class="profile-card">
+          <div class="profile-item">
+            <div class="profile-item-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <div class="profile-item-text">Notifications</div>
+            <div class="profile-item-value">
+              <label class="toggle-switch">
+                <input type="checkbox" id="notificationsToggle" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="profile-item">
+            <div class="profile-item-icon">
+              <i class="fas fa-moon"></i>
+            </div>
+            <div class="profile-item-text">Dark Mode</div>
+            <div class="profile-item-value">
+              <label class="toggle-switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="profile-item" id="languageBtn">
+            <div class="profile-item-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="profile-item-text">Language</div>
+            <div class="profile-item-value">
+              <span>English</span>
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="profile-item" id="currencyBtn">
+            <div class="profile-item-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="profile-item-text">Currency</div>
+            <div class="profile-item-value">
+              <span>USD</span>
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logout Button -->
+      <button id="logoutBtnProfile" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Edit Profile</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="profileForm">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-input" placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-input" placeholder="Enter your email" readonly>
+            </div>
+            
+            <div class="form-error" id="profileError"></div>
+            
+            <button type="submit" class="form-button">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal" id="changePasswordModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Change Password</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="changePasswordForm">
+            <div class="form-group">
+              <label for="currentPassword" class="form-label">Current Password</label>
+              <input type="password" id="currentPassword" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="newPassword" class="form-label">New Password</label>
+              <input type="password" id="newPassword" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+              <input type="password" id="confirmNewPassword" class="form-input" required>
+            </div>
+            <div class="form-error" id="changePasswordError"></div>
+            <button type="submit" class="form-button">Update Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming Soon Modal -->
+    <div class="modal" id="comingSoonModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Coming Soon</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div style="text-align: center; padding: 20px 0;">
+            <div style="font-size: 48px; color: #0052ff; margin-bottom: 20px;">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 style="margin-bottom: 10px; font-weight: 600;">This feature is coming soon!</h3>
+            <p style="color: #666;">We're working hard to bring you this feature. Stay tuned for updates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+      const token = localStorage.getItem("token")
+
+      if (!currentUser || !token) {
+        // Redirect to login if not logged in
+        window.location.href = "index.html"
+        return
+      }
+
+      // Apply dark mode if enabled
+      const isDarkMode = localStorage.getItem("darkMode") === "true"
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode")
+        const darkModeToggle = document.getElementById("darkModeToggle")
+        if (darkModeToggle) {
+          darkModeToggle.checked = true
+        }
+      }
+
+      // Set user profile data
+      const profileName = document.getElementById("profileName")
+      const profileEmail = document.getElementById("profileEmail")
+      const profileInitial = document.getElementById("profileInitial")
+      const nameInput = document.getElementById("name")
+      const emailInput = document.getElementById("email")
+
+      if (profileName && currentUser.name) {
+        profileName.textContent = currentUser.name
+      }
+
+      if (profileEmail && currentUser.email) {
+        profileEmail.textContent = currentUser.email
+      }
+
+      if (profileInitial && currentUser.name) {
+        profileInitial.textContent = currentUser.name.charAt(0).toUpperCase()
+      }
+
+      if (nameInput && currentUser.name) {
+        nameInput.value = currentUser.name
+      }
+
+      if (emailInput && currentUser.email) {
+        emailInput.value = currentUser.email
+      }
+
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById("darkModeToggle")
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener("change", function() {
+          if (this.checked) {
+            document.body.classList.add("dark-mode")
+            localStorage.setItem("darkMode", "true")
+          } else {
+            document.body.classList.remove("dark-mode")
+            localStorage.setItem("darkMode", "false")
+          }
+        })
+      }
+
+      // Logout button
+      const logoutBtnProfile = document.getElementById("logoutBtnProfile")
+      if (logoutBtnProfile) {
+        logoutBtnProfile.addEventListener("click", () => {
+          // Clear user data from localStorage
+          localStorage.removeItem("currentUser")
+          localStorage.removeItem("token")
+
+          // Redirect to login page
+          window.location.href = "index.html"
+        })
+      }
+
+      // Edit Profile button
+      const editProfileBtn = document.getElementById("editProfileBtn")
+      if (editProfileBtn) {
+        editProfileBtn.addEventListener("click", () => {
+          document.getElementById("editProfileModal").classList.add("active")
+        })
+      }
+
+      // Change Password button
+      const changePasswordBtn = document.getElementById("changePasswordBtn")
+      if (changePasswordBtn) {
+        changePasswordBtn.addEventListener("click", () => {
+          document.getElementById("changePasswordModal").classList.add("active")
+        })
+      }
+
+      // Coming soon features
+      const comingSoonFeatures = [
+        document.getElementById("twoFactorBtn"),
+        document.getElementById("biometricBtn"),
+        document.getElementById("languageBtn"),
+        document.getElementById("currencyBtn")
+      ]
+
+      comingSoonFeatures.forEach(btn => {
+        if (btn) {
+          btn.addEventListener("click", () => {
+            document.getElementById("comingSoonModal").classList.add("active")
+          })
+        }
+      })
+
+      // Profile form handling
+      const profileForm = document.getElementById("profileForm")
+      if (profileForm) {
+        profileForm.addEventListener("submit", (e) => {
+          e.preventDefault()
+          const name = document.getElementById("name").value
+          const errorElement = document.getElementById("profileError")
+
+          // Clear previous errors
+          errorElement.textContent = ""
+
+          // Make API request to update profile
+          fetch("/api/users/profile", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              name,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Update user data in localStorage
+                currentUser.name = name
+                localStorage.setItem("currentUser", JSON.stringify(currentUser))
+
+                // Update profile display
+                profileName.textContent = name
+                profileInitial.textContent = name.charAt(0).toUpperCase()
+
+                // Close modal
+                document.getElementById("editProfileModal").classList.remove("active")
+
+                // Show success message
+                alert("Profile updated successfully")
+              } else {
+                errorElement.textContent = data.message || "Failed to update profile"
+              }
+            })
+            .catch((error) => {
+              errorElement.textContent = "An error occurred. Please try again."
+              console.error("Profile update error:", error)
+            })
+        })
+      }
+
+      // Change password form handling
+      const changePasswordForm = document.getElementById("changePasswordForm")
+      if (changePasswordForm) {
+        changePasswordForm.addEventListener("submit", (e) => {
+          e.preventDefault()
+          const currentPassword = document.getElementById("currentPassword").value
+          const newPassword = document.getElementById("newPassword").value
+          const confirmNewPassword = document.getElementById("confirmNewPassword").value
+          const errorElement = document.getElementById("changePasswordError")
+
+          // Clear previous errors
+          errorElement.textContent = ""
+
+          // Validate passwords match
+          if (newPassword !== confirmNewPassword) {
+            errorElement.textContent = "New passwords do not match"
+            return
+          }
+
+          // Make API request to change password
+          fetch("/api/users/change-password", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              currentPassword,
+              newPassword,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Close modal and show success message
+                document.getElementById("changePasswordModal").classList.remove("active")
+                alert("Password changed successfully")
+                changePasswordForm.reset()
+              } else {
+                errorElement.textContent = data.message || "Failed to change password"
+              }
+            })
+            .catch((error) => {
+              errorElement.textContent = "An error occurred. Please try again."
+              console.error("Password change error:", error)
+            })
+        })
+      }
+
+      // Close modals
+      const closeModalButtons = document.querySelectorAll(".modal-close")
+      closeModalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".modal").forEach((modal) => {
+            modal.classList.remove("active")
+          })
+        })
+      })
+
+      // Close modal when clicking outside
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("active")
+          }
+        })
+      })
+
+      // Profile avatar edit
+      const profileAvatar = document.getElementById("profileAvatar")
+      if (profileAvatar) {
+        profileAvatar.addEventListener("click", () => {
+          document.getElementById("comingSoonModal").classList.add("active")
+        })
+      }
+    })
+  </script>
+</body>
+</html>
+

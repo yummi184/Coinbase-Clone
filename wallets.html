@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wallet - External Wallets</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="dashboard-container">
+            <header class="page-header">
+                <h1>External Wallets</h1>
+                <button id="addWalletBtn" class="btn-icon">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </header>
+
+            <div id="addWalletForm" class="wallet-form hidden">
+                <form id="walletForm">
+                    <div class="form-group">
+                        <label for="walletType">Wallet Type</label>
+                        <div class="select-wrapper">
+                            <select id="walletType" required>
+                                <option value="">Select wallet type</option>
+                                <option value="bitcoin">Bitcoin</option>
+                                <option value="ethereum">Ethereum</option>
+                                <option value="litecoin">Litecoin</option>
+                                <option value="ripple">Ripple (XRP)</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="walletAddress">Wallet Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-wallet"></i>
+                            <input type="text" id="walletAddress" placeholder="Enter wallet address" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="walletLabel">Label (Optional)</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="walletLabel" placeholder="My Bitcoin Wallet">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Wallet</button>
+                        <button type="button" id="cancelAddWallet" class="btn btn-outline">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div id="walletsList" class="wallets-list">
+                <!-- Wallets will be loaded here -->
+                <div class="loading-spinner" id="walletsLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+            
+            <div id="noWallets" class="no-data hidden">
+                <div class="empty-state">
+                    <i class="fas fa-wallet"></i>
+                    <p>You haven't added any external wallets yet.</p>
+                    <button id="addFirstWalletBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Your First Wallet
+                    </button>
+                </div>
+            </div>
+
+            <nav class="bottom-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="wallets.html" class="nav-item active">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallets</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script src="js/wallets.js"></script>
+</body>
+</html>
+
