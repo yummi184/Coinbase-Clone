@@ -1,0 +1,246 @@
+/* Admin specific styles */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: var(--gradient-bg);
+  color: white;
+}
+
+.admin-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-title i {
+  font-size: 24px;
+}
+
+.admin-title h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.theme-btn,
+.logout-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+}
+
+.admin-balance-card {
+  margin: 15px;
+  padding: 20px;
+  background: var(--gradient-bg);
+  border-radius: var(--border-radius);
+  color: white;
+}
+
+.admin-balance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.admin-balance-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.admin-balance-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-balance-actions button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.admin-balance-amount {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.admin-actions-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.admin-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+}
+
+.admin-action-btn i {
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.admin-tabs {
+  padding: 0 15px;
+}
+
+.users-list,
+.wallets-list {
+  margin-top: 15px;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.user-email,
+.user-balance {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.user-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.status-active {
+  background-color: rgba(52, 199, 89, 0.1);
+  color: var(--success-color);
+}
+
+.status-inactive {
+  background-color: rgba(255, 59, 48, 0.1);
+  color: var(--error-color);
+}
+
+.user-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.user-action-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--input-bg);
+  border-radius: 50%;
+  color: var(--text-secondary);
+}
+
+.user-action-btn.edit {
+  color: var(--primary-color);
+}
+
+.user-action-btn.delete {
+  color: var(--error-color);
+}
+
+.wallet-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.wallet-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.wallet-details {
+  flex: 1;
+}
+
+.wallet-type {
+  font-weight: 600;
+}
+
+.wallet-address {
+  color: var(--text-secondary);
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.wallet-balance {
+  font-weight: 600;
+}
+
+.admin-transactions .transaction-item {
+  flex-wrap: wrap;
+}
+
+.transaction-parties {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.transaction-type {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  background-color: rgba(138, 112, 255, 0.1);
+  color: var(--primary-color);
+  text-transform: capitalize;
+}
+
