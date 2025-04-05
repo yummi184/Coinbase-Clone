@@ -1,4 +1,4 @@
-# CryptoWallet Simulator by EmmyHenz
+# Coinbase Simulator
 
 ![CryptoWallet Simulator](https://img.shields.io/badge/Status-Active-brightgreen) 
 ![License](https://img.shields.io/badge/License-Paid%20Proprietary-blue) 
