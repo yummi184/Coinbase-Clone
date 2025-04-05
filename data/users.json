@@ -1,0 +1,16 @@
+[
+  {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "password": "$2a$10$v5essBftZMiRo1X/LkrThOOJeYHK85bGivIWJUSZwdRq8jur0kj5e",
+    "balance": 5000000000,
+    "isAdmin": true,
+    "status": "active",
+    "createdAt": "2025-03-29T10:00:00.000Z",
+    "trxBalance": 5000000000,
+    "usdtBalance": 500000000,
+    "usdcBalance": 5000000000,
+    "mainWalletAddress": "main_Ximj69jAkHfcYMKo8GKCgyJwgo52XPMnRt"
+  }
+]
