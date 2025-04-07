@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs")
 const { v4: uuidv4 } = require("uuid")
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 7860
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key"
 
 // Middleware
